@@ -2,6 +2,8 @@
 
 use <common.scad>;
 use <hub-gusset.scad>;
+use <long-web.scad>;
+use <lat-web.scad>;
 use <tube.scad>;
 
 module hub_gussets() {
@@ -66,3 +68,39 @@ for (i = [0:7])
                 rotor();
         }
     }
+
+module long_webs() {
+    translate([-web_dx(), 0, tube_height() / 2])
+        linear_extrude(height = gusset_thickness())
+            long_web();
+    translate([-web_dx(), 0, -tube_height() / 2 - gusset_thickness()])
+        linear_extrude(height = gusset_thickness())
+            long_web();
+    translate([web_dx(), 0, tube_height() / 2])
+        linear_extrude(height = gusset_thickness())
+            long_web();
+    translate([web_dx(), 0, -tube_height() / 2 - gusset_thickness()])
+        linear_extrude(height = gusset_thickness())
+            long_web();
+}
+long_webs();
+
+module lat_webs() {
+    translate([0, -web_dx(), tube_height() / 2 + gusset_thickness()])
+        linear_extrude(height = gusset_thickness())
+            rotate([0, 0, 90])
+                lat_web();
+    translate([0, -web_dx(), -tube_height() / 2 - 2 * gusset_thickness()])
+        linear_extrude(height = gusset_thickness())
+            rotate([0, 0, 90])
+                lat_web();
+    translate([0, web_dx(), tube_height() / 2 + gusset_thickness()])
+        linear_extrude(height = gusset_thickness())
+            rotate([0, 0, 90])
+                lat_web();
+    translate([0, web_dx(), -tube_height() / 2 - 2 * gusset_thickness()])
+        linear_extrude(height = gusset_thickness())
+            rotate([0, 0, 90])
+                lat_web();
+}
+lat_webs();
