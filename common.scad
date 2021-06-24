@@ -1,3 +1,5 @@
+// Units are mm.
+
 function i2mm(x) = x * 0.0254 * 1000;
 
 function rotor_radius() = i2mm(6);
