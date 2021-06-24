@@ -39,3 +39,13 @@ rotate([0, 0, -90])
     translate([0, lateral_tube_len / 2 - tube_width() / 2 + bolt_radial_position(), 0])
         lateral_tube();
 
+module diagonal_tube() {
+    h0 = tube_width() / 2;
+    h1 = h0 + web_dx() * sqrt(2) - bolt_radial_position();
+    h2 = lateral_tube_len - tube_width() / 2;
+    tube(length = lateral_tube_len, top_bolts = [h0, h1, h2]);
+}
+for (i = [0:3])
+    rotate([0, 0, 45 + 90 * i])
+        translate([0, lateral_tube_len / 2 - tube_width() / 2 + bolt_radial_position(), 0])
+            diagonal_tube();
