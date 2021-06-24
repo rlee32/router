@@ -3,7 +3,7 @@
 use <common.scad>;
 
 
-module tube(length, top_bolts, side_bolts) {
+module tube(length, top_bolts = [], side_bolts = []) {
     difference() {
         cube([tube_width(), length, tube_height()], center = true);
         cube([tube_width() - 2 * tube_thickness(), 2 * length, tube_height() - 2 * tube_thickness()], center = true);

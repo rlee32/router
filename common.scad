@@ -8,6 +8,8 @@ function arm_count() = 8;
 
 function center_to_motor() = 1.03125 * rotor_radius(); // overall center to motor axis.
 
+function web_dx() = center_to_motor() / sqrt(2); // lateral distance from center to webbing bolt hole.
+
 // hub gusset
 function edge_radius() = i2mm(1);
 function bolt_radial_position() = i2mm(0.75);
