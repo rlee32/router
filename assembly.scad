@@ -4,13 +4,15 @@ use <common.scad>;
 use <hub-gusset.scad>;
 use <tube.scad>;
 
-// Hub gussets.
-translate([0, 0, tube_height() / 2])
-    linear_extrude(height = gusset_thickness())
-        hub_gusset();
-translate([0, 0, -tube_height() / 2 - gusset_thickness()])
-    linear_extrude(height = gusset_thickness())
-        hub_gusset();
+module hub_gussets() {
+    translate([0, 0, tube_height() / 2])
+        linear_extrude(height = gusset_thickness())
+            hub_gusset();
+    translate([0, 0, -tube_height() / 2 - gusset_thickness()])
+        linear_extrude(height = gusset_thickness())
+            hub_gusset();
+}
+hub_gussets();
 
 module forward_tube() {
     len = tube_width() + center_to_motor() * 2 + bolt_radial_position() * 2;
