@@ -51,3 +51,18 @@ for (i = [0:3])
     rotate([0, 0, 45 + 90 * i])
         translate([0, lateral_tube_len / 2 - tube_width() / 2 + bolt_radial_position(), 0])
             diagonal_tube();
+
+module rotor() {
+    cylinder(h = i2mm(1/16), d = rotor_diam(), center = true);
+}
+for (i = [0:7])
+    rotate([0, 0, 45 + 45 * i]) {
+        nominal_height = i2mm(1);
+        if (i % 2 == 0) {
+            translate([0, center_to_motor(), -nominal_height])
+                rotor();
+        } else {
+            translate([0, center_to_motor(), nominal_height])
+                rotor();
+        }
+    }
